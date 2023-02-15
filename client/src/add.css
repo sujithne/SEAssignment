@@ -1,0 +1,15 @@
+.edit1{
+    color: rgb(0, 0, 0);
+    margin: 2%;
+    padding: 5%;
+}
+.edit1 textarea{
+    color: #901010;
+    width: 50%;
+    height: 35px;
+    border: 2px solid;
+}
+.edit1 details{
+    text-align: justify;
+    color: #901010;
+}
