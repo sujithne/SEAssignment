@@ -15,7 +15,8 @@ const[first,setFirst]=useState(null);
   const[r2,setR2]=useState();
   const addition=()=>{
     setR1(Number(first)+Number(sec));
-    Axios.get(`http://100.26.251.78:3000/add/${first}/and/${sec}`).then((response)=>{
+
+    Axios.get(`http://localhost:3000/add/${first}/and/${sec}`).then((response)=>{
       setR2(Number(response.data.addResult));
       console.log(response.data.addResult);
     });
