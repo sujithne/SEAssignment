@@ -16,7 +16,7 @@ export default function Add() {
     const addition = () => {
         setR1(Number(first) + Number(sec));
 
-        Axios.get(`http://18.210.66.126:3001/add/${first}/and/${sec}`).then((response) => {
+        Axios.get(`http://18.210.66.126:3003/add/${first}/and/${sec}`).then((response) => {
             setR2(Number(response.data.addResult));
             console.log(response.data.addResult);
         });

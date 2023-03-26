@@ -14,7 +14,7 @@ const NewInventoryItem = () => {
     formData.append('name', name);
     formData.append('quantity', quantity);
     formData.append('image', image);
-    axios.post('http://18.210.66.126:3001:3001/inventory', formData)
+    axios.post('http://18.210.66.126:3003/inventory', formData)
       .then(res => {
         console.log(res.data);
         setSuccessMsg('Item added successfully!');
