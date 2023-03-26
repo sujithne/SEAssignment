@@ -8,7 +8,7 @@ export default function NavBar() {
                 <a href="/inventory" className="inventory">Inventory</a>
             </li>
             <li>
-                <a href="/api" className="inventory">Popular Books</a>
+                <a href="/api" className="api">Popular Books</a>
             </li>
         </ul>
     </nav>

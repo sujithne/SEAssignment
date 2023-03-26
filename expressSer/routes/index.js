@@ -49,6 +49,6 @@ router.get("/add/:first/and/:sec", (req, res) => {
 // Listen to server
 router.listen(port, () => {
 
-  console.log(`Server running at http://localhost:${port}`);
+  console.log(`Server running at http://18.210.66.126:3001:${port}`);
 });
 module.exports = router;
