@@ -9,23 +9,23 @@ export default function Add() {
     const [inputText1, setInputText1] = useState();
     const [backendData, setBackendData] = useState([{}])
 
-const[first,setFirst]=useState(null);
-  const[sec,setSec]=useState(null);
-  const[r1,setR1]=useState();
-  const[r2,setR2]=useState();
-  const addition=()=>{
-    setR1(Number(first)+Number(sec));
+    const [first, setFirst] = useState(null);
+    const [sec, setSec] = useState(null);
+    const [r1, setR1] = useState();
+    const [r2, setR2] = useState();
+    const addition = () => {
+        setR1(Number(first) + Number(sec));
 
-    Axios.get(`http://18.214.50.56:3000/add/${first}/and/${sec}`).then((response)=>{
-      setR2(Number(response.data.addResult));
-      console.log(response.data.addResult);
-    });
-  }
+        Axios.get(`http://18.214.50.56:3000/add/${first}/and/${sec}`).then((response) => {
+            setR2(Number(response.data.addResult));
+            console.log(response.data.addResult);
+        });
+    }
 
 
     return (
         <div className='edit1'>
-           
+
             <div>
                 <div>
                     <div className='row'>
@@ -50,7 +50,7 @@ const[first,setFirst]=useState(null);
                         <div className='col-sm-8'>
                             <textarea
                                 value={inputText}
-                                onChange={(event)=>{setFirst(event.target.value)}}
+                                onChange={(event) => { setFirst(event.target.value) }}
                             />
                         </div>
                     </div>
@@ -60,8 +60,8 @@ const[first,setFirst]=useState(null);
                         <div className='col-sm-8'>
                             <textarea
                                 value={inputText1}
-                               
-                                onChange={(event)=>{setSec(event.target.value)}}
+
+                                onChange={(event) => { setSec(event.target.value) }}
                             />
                         </div>
                     </div>

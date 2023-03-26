@@ -1,40 +1,54 @@
-var express = require('express');
-var router = express.Router();
+// require express
+const express = require("express");
+const path = require("path");
 var cors = require('cors')
 
-router.use(function(req, res, next) {
-  // allow requests from any origin
-  res.header('Access-Control-Allow-Origin', '*');
 
-  // allow the following HTTP methods
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//load env variables
+require('dotenv').config()
 
-  // allow the following request headers
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+// create express router
+const router = express();
 
-  next();
+router.use(express.urlencoded({ extended: true }))
+router.use(cors());
+router.use(express.urlencoded())
+router.use(express.json())
+
+// Import DB Connection
+require("./config.js");
+
+//serving frontend using middlewares
+router.use(express.static(path.join(__dirname, "..", "dist")));
+router.use(express.static("public"));
+router.use('./uploads',express.static('uploads'))
+// Import API route
+var routes = require('./routes'); //importing route
+routes(router);
+
+// define port to run express router
+const port = 3001;
+
+// use middleware on express router
+router.use(express.json());
+
+// Add endpoint
+router.get('/', (req, res) => {
+  res.send("Welcome to our router");
 });
 
-
-router.use(cors())
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
-
-router.get("/hello", (req,res)=>{
-  res.send("Hello World");
-})
-
-router.get("/add/:first/and/:sec",(req,res)=>{
-  console.log(req.params.first, req.params.sec);
+router.get("/add/:first/and/:sec", (req, res) => {
   console.log(req.params.first + req.params.sec);
-  let firstNum=parseInt(req.params.first);
-  let secondNum=parseInt(req.params.sec);
-  pj=firstNum+secondNum;
+  let firstNum = parseInt(req.params.first);
+  let secondNum = parseInt(req.params.sec);
+  pj = firstNum + secondNum;
   console.log(pj);
-  res.json({"addResult":pj});
+  res.json({ "addResult": pj });
 });
 
+// Listen to server
+router.listen(port, () => {
 
+  console.log(`Server running at http://localhost:${port}`);
+});
 module.exports = router;
