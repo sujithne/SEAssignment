@@ -27,7 +27,7 @@ var routes = require('./routes'); //importing route
 routes(router);
 
 // define port to run express router
-const port = 3001;
+const port = 3003;
 
 // use middleware on express router
 router.use(express.json());
@@ -49,6 +49,6 @@ router.get("/add/:first/and/:sec", (req, res) => {
 // Listen to server
 router.listen(port, () => {
 
-  console.log(`Server running at http://18.210.66.126:3001:${port}`);
+  console.log(`Server running at http://18.210.66.126:${port}`);
 });
 module.exports = router;
