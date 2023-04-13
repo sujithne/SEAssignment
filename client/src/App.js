@@ -1,55 +1,31 @@
-import NavBar from './NavBar'
-import DescriptionDisplay from './edit'
-import Add from "./add"
 import Home from "./home"
 import Inventory from './inventory'
-
-import AddItem from './addItem'
+import Nav from './NavBar';
+import { useLocation, BrowserRouter, Routes, Route } from "react-router-dom";
 import Api from './api'
-import Update from './update'
 import "./styles.css"
 import "./add.css"
-
-
+import UserDashboard from './userdashboard'
 import React, { useEffect, useState } from 'react'
-
-
+import SignupPage from './signup'
+import LoginPage from './login'
 function App() {
 
-  let component;
-
-  console.log(window.location.pathname);
-
-  switch (window.location.pathname) {
-    case "/":
-      component = <Home />;
-      break
-    case "/add":
-      component = <Add />;
-      break
-    case "/inventory":
-      component = <Inventory />;
-      break
-    
-    case "/api":
-      component = <Api />;
-      break
-    case "/addItem":
-      component = <AddItem />;
-      break
-    case "/inventorys/:id":
-      component = <Update />
-      break
-
-  }
   return (
     <div>
-
-      <><NavBar />
-        {component}
-      </>
-
-
+     <>
+    <BrowserRouter>
+      <Nav />
+      <Routes>
+        <Route path="/" exact element = {<Home/>}/>
+        <Route path="/inventory" exact element = {<Inventory/>}/>
+        <Route path="/api" exact element = {<Api/>}/>
+        <Route path="/login" exact element = {<LoginPage/>}/>
+        <Route path="/signup" exact element = {<SignupPage/>}/>
+        <Route path="/userdashboard" exact element = {<UserDashboard/>}/>
+       
+      </Routes>
+    </BrowserRouter></>
     </div>
   )
 }

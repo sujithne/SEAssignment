@@ -1,8 +1,8 @@
 // create router function
 module.exports = function(router) {
     var invtList = require('./controller');
+    var loginList = require('./logincontroller');
 
-// invtList Routes
 
 // get and post request for /Invt endpoints
     router
@@ -16,4 +16,13 @@ module.exports = function(router) {
     .get(invtList.getInvt)
     .put(invtList.updateInvt)
     .delete(invtList.deleteInvt);
+
+    router
+    .route("/login")
+    .get(loginList.listAllLogin)
+    .post(loginList.createNewLogin);
+
+    router
+    .route("/login/:id")
+    .get(loginList.getLogin);
 };

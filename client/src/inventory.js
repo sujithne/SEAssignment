@@ -17,13 +17,14 @@ const InventoryList = () => {
     const [iid, setIid] = useState("");
 
     useEffect(() => {
-        axios.get('http://18.210.66.126:3003/inventory')
+        axios.get('http://localhost:3003/inventory')
             .then(res => setInventory(res.data))
             .catch(err => console.log(err));
+        
     }, []);
 
     const handleDelete = (id) => {
-        axios.delete(`http://18.210.66.126:3003/inventorys/${id}`)
+        axios.delete(`http://localhost:3003/inventorys/${id}`)
             .then(() => {
                 const updatedInventory = inventory.filter(item => item._id !== id);
                 setInventory(updatedInventory);
@@ -32,13 +33,10 @@ const InventoryList = () => {
             .catch(err => console.log(err));
     };
 
-
-
 const handleEdit = (id) => {
-
     // setName(id.name);
     //setQty(qty);
-    axios.get(`http://18.210.66.126:3003/inventorys/${id}`).then((response) => {
+    axios.get(`http://localhost:3003/inventorys/${id}`).then((response) => {
         setIid(id);
         setName(response.data.name);
         setQty(response.data.quantity);
@@ -46,7 +44,7 @@ const handleEdit = (id) => {
     })
 }
 const updateItem = () => {
-    axios.put(`http://18.210.66.126:3003/inventorys/${iid}`, {
+    axios.put(`http://localhost:3003/inventorys/${iid}`, {
         name,
         quantity,
 

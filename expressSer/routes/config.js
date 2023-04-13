@@ -1,9 +1,9 @@
 // Export mongoose
 const  mongoose = require("mongoose");
-
+const { MongoClient } = require("mongodb");
 
 //Assign MongoDB connection string to Uri and declare options settings
-const uri = `mongodb+srv://user1:User123@inventory.oqvz0xw.mongodb.net/?retryWrites=true&w=majority`
+const uri = 'mongodb://localhost:27017/inventoryDB'
 
 // Declare a variable named option and assign optional settings
 const  options = {
@@ -11,9 +11,10 @@ const  options = {
     useUnifiedTopology:  true
 };
 
-// Connect MongoDB Atlas using mongoose connect method
-mongoose.connect(uri, options).then(() => {
-    console.log("Database connection established!");
+const client = new MongoClient(uri);
+
+mongoose.connect(uri, options).then(() =>{
+     console.log("Database connection established!");
     },
     err  => {
     {

@@ -15,15 +15,13 @@ export default function Add() {
     const [r2, setR2] = useState();
     const addition = () => {
         setR1(Number(first) + Number(sec));
-
-        Axios.get(`http://18.210.66.126:3003/add/${first}/and/${sec}`).then((response) => {
+        Axios.get(`http://localhost:3003/add/${first}/and/${sec}`).then((response) => {
             setR2(Number(response.data.addResult));
             console.log(response.data.addResult);
         });
     }
     return (
         <div className='edit1'>
-
             <div>
                 <div>
                     <div className='row'>
@@ -58,7 +56,6 @@ export default function Add() {
                         <div className='col-sm-8'>
                             <textarea
                                 value={inputText1}
-
                                 onChange={(event) => { setSec(event.target.value) }}
                             />
                         </div>

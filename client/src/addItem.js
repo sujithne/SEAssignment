@@ -14,7 +14,7 @@ const NewInventoryItem = () => {
     formData.append('name', name);
     formData.append('quantity', quantity);
     formData.append('image', image);
-    axios.post('http://18.210.66.126:3003/inventory', formData)
+    axios.post('http://localhost:3003/inventory', formData)
       .then(res => {
         console.log(res.data);
         setSuccessMsg('Item added successfully!');
@@ -41,7 +41,7 @@ const NewInventoryItem = () => {
 
             <Form.Group controlId="formImage">
               <Form.Label>Image</Form.Label>
-              <Form.Control type="file"  accept="image/png, image/gif, image/jpeg" onChange={(e) => setImage(e.target.files[0])} />
+              <Form.Control type="file" accept="image/png, image/gif, image/jpeg" onChange={(e) => setImage(e.target.files[0])} />
             </Form.Group>
 
             <Button variant="primary" type="submit">

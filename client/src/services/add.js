@@ -11,7 +11,7 @@ export async function getAddresult(a, b) {
     console.log(20);
     try{
         console.log(10);
-        const response = await fetch('http://18.210.66.126:3003/add', requestOptions);
+        const response = await fetch('http://localhost:3003/add', requestOptions);
         console.log("result =", response)
         return await response.json();
     }catch(error) {

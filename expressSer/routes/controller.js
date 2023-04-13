@@ -1,5 +1,6 @@
-// import Todo Model
+// import Invt and login Model
 const Invt = require("./model");
+
 const multer = require("multer");
 const fs = require("fs");
 const imageModel = require("./model");
@@ -16,7 +17,7 @@ const upload = multer({
     storage:storage 
 }).single('image')
 
-// listAllInvt function - To list all todos
+// listAllInvt function - To list all inventory
 exports.listAllInvt = async (req, res) => {
     try{
         const invt = await Invt.find({});
@@ -28,7 +29,7 @@ exports.listAllInvt = async (req, res) => {
     }
 };
 
-// createNewTodo function - To create new todo
+// createNewTodo function - To create new tinventory
 exports.createNewInvt = async (req, res) => {
   
     upload(req, res, (err) =>{
@@ -85,3 +86,4 @@ exports.deleteInvt = async (req, res) => {
         res.status(500).send(error);
     }
 };
+
