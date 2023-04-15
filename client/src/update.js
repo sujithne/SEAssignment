@@ -24,7 +24,7 @@ const EditInventoryItem = (props) => {
     axios.put(`http://localhost:3003/inventorys/${props.match.params.id}`, updatedItem)
       .then(res => {
         console.log(res.data);
-        props.history.push('/');
+        // props.history.push('/');
       })
       .catch(err => console.log(err));
   };

@@ -9,7 +9,6 @@ const LoginPage = () => {
     username: '',
     password: ''
   });
-  
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState([]);
@@ -19,8 +18,8 @@ const LoginPage = () => {
     axios.get('http://localhost:3003/login')
         .then(res => setLogin(res.data))
         .catch(err => console.log(err));
-    
 }, []);
+
 const handleUsernameChange = (e) => {
   setUsername(e.target.value);
 };

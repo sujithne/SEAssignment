@@ -3,7 +3,6 @@ module.exports = function(router) {
     var invtList = require('./controller');
     var loginList = require('./logincontroller');
 
-
 // get and post request for /Invt endpoints
     router
     .route("/inventory")
@@ -20,9 +19,13 @@ module.exports = function(router) {
     router
     .route("/login")
     .get(loginList.listAllLogin)
-    .post(loginList.createNewLogin);
+    .post(loginList.createNewLogin)
 
     router
     .route("/login/:id")
     .get(loginList.getLogin);
+
+    // router
+    // .route("logout")
+    // .post(loginList.logout);
 };

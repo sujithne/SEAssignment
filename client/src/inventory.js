@@ -8,6 +8,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 // import '../../expressSer/uploads'
 import { Link } from 'react-router-dom';
 import { Buffer } from 'buffer';
+import { useNavigate } from "react-router-dom"
 
 const InventoryList = () => {
     const [inventory, setInventory] = useState([]);
@@ -15,6 +16,7 @@ const InventoryList = () => {
     const [name, setName] = useState("");
     const [quantity, setQty] = useState("");
     const [iid, setIid] = useState("");
+    let navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:3003/inventory')
@@ -50,7 +52,13 @@ const updateItem = () => {
 
     }).then((response) => {
         alert("Item Updated")
-        window.location.reload();
+        // window.location.reload();
+        // location.href = '/inventory';
+       
+        setTimeout(function(){
+            window.location.reload();
+        }, 500);
+        // navigate('/inventory')
         
     });
 }
@@ -66,7 +74,8 @@ return (
                     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js" integrity="sha512-Sct/LCTfkoqr7upmX9VZKEzXuRk5YulFoDTunGapYJdlCwA+Rl4RhgcPCLf7awTNLmIVrszTPNUFu4MSesep5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
                     <h1>Inventory List</h1>
-                    <a href="/addItem" class="text-success"><i class="fas fa-plus-circle fa-lg"></i> Add Item</a>
+                    <Link to={"/addItem"} class="text-success"><i class="fas fa-plus-circle fa-lg"></i> Add Item</Link>
+                   
                     <Table striped bordered hover>
                         <thead>
                             <tr>

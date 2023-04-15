@@ -1,6 +1,7 @@
 import Home from "./home"
-import Inventory from './inventory'
 import Nav from './NavBar';
+import Inventory from './inventory'
+import Additem from './addItem'
 import { useLocation, BrowserRouter, Routes, Route } from "react-router-dom";
 import Api from './api'
 import "./styles.css"
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" exact element = {<Home/>}/>
         <Route path="/inventory" exact element = {<Inventory/>}/>
+        <Route path="/additem" exact element = {<Additem/>}/>
         <Route path="/api" exact element = {<Api/>}/>
         <Route path="/login" exact element = {<LoginPage/>}/>
         <Route path="/signup" exact element = {<SignupPage/>}/>

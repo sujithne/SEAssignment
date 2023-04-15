@@ -52,7 +52,7 @@ exports.createNewInvt = async (req, res) => {
 
 };
 exports.getInvt = async (req, res) => {
-    try{
+    try{ 
         const invt = await Invt.findById(req.params.id);
         res.status(200).send(invt);
         }
