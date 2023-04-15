@@ -4,7 +4,7 @@ const { MongoClient } = require("mongodb");
 
 
 //Assign MongoDB connection string to Uri and declare options settings
-const uri = 'mongodb://localhost:27017/inventoryDB'
+const uri = 'mongodb://mongo:27017/inventoryDB'
 const client = new MongoClient(uri);
 const  options = {
     useNewUrlParser:  true,

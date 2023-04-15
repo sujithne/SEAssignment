@@ -19,14 +19,14 @@ const InventoryList = () => {
     let navigate = useNavigate();
 
     useEffect(() => {
-        axios.get('http://localhost:3003/inventory')
+        axios.get('http://3.213.111.194:3003/inventory')
             .then(res => setInventory(res.data))
             .catch(err => console.log(err));
         
     }, []);
 
     const handleDelete = (id) => {
-        axios.delete(`http://localhost:3003/inventorys/${id}`)
+        axios.delete(`http://3.213.111.194:3003/inventorys/${id}`)
             .then(() => {
                 const updatedInventory = inventory.filter(item => item._id !== id);
                 setInventory(updatedInventory);
@@ -38,7 +38,7 @@ const InventoryList = () => {
 const handleEdit = (id) => {
     // setName(id.name);
     //setQty(qty);
-    axios.get(`http://localhost:3003/inventorys/${id}`).then((response) => {
+    axios.get(`http://3.213.111.194:3003/inventorys/${id}`).then((response) => {
         setIid(id);
         setName(response.data.name);
         setQty(response.data.quantity);
@@ -46,7 +46,7 @@ const handleEdit = (id) => {
     })
 }
 const updateItem = () => {
-    axios.put(`http://localhost:3003/inventorys/${iid}`, {
+    axios.put(`http://3.213.111.194:3003/inventorys/${iid}`, {
         name,
         quantity,
 

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 const LoginPage = () => {
   const [formErrors, setFormErrors] = useState({
@@ -15,18 +15,18 @@ const LoginPage = () => {
   let navigate = useNavigate();
 
   useEffect(() => {
-    axios.get('http://localhost:3003/login')
-        .then(res => setLogin(res.data))
-        .catch(err => console.log(err));
-}, []);
+    axios.get('http://3.213.111.194:3003/login')
+      .then(res => setLogin(res.data))
+      .catch(err => console.log(err));
+  }, []);
 
-const handleUsernameChange = (e) => {
-  setUsername(e.target.value);
-};
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
 
-const handlePasswordChange = (e) => {
-  setPassword(e.target.value);
-};
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ const handlePasswordChange = (e) => {
       alert('Invalid username or password.');
     }
   }
-  
+
   const validateForm = () => {
     let errors = {};
     let formIsValid = true;
@@ -60,17 +60,17 @@ const handlePasswordChange = (e) => {
     return formIsValid;
   };
 
-  
+
   return (
     <Container>
       <Row className="justify-content-md-center">
         <Col md="4">
           <h1>LogIn</h1>
-          
+
           <Form onSubmit={handleSubmit}>
             <Form.Group controlId="formQuantity">
               <Form.Label>Username</Form.Label>
-              <Form.Control type="test" placeholder="Enter Username" value={username}  onChange={handleUsernameChange} isInvalid={formErrors.username} required />
+              <Form.Control type="test" placeholder="Enter Username" value={username} onChange={handleUsernameChange} isInvalid={formErrors.username} required />
               <Form.Control.Feedback type="invalid">
                 {formErrors.username}
               </Form.Control.Feedback>
@@ -78,7 +78,7 @@ const handlePasswordChange = (e) => {
 
             <Form.Group controlId="formPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" placeholder="Enter Password"value={password} onChange={handlePasswordChange} isInvalid={formErrors.password} required />
+              <Form.Control type="password" placeholder="Enter Password" value={password} onChange={handlePasswordChange} isInvalid={formErrors.password} required />
               <Form.Control.Feedback type="invalid">
                 {formErrors.password}
               </Form.Control.Feedback>

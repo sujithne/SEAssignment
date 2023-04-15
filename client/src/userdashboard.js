@@ -12,7 +12,7 @@ function UserDashboard() {
         setInfo(searchParams.get('info'))
         setName(searchParams.get('name'))
 
-        // axios.get('http://localhost:3003/login')
+        // axios.get('http://3.213.111.194:3003/login')
         //     .then(res => setUser(res.data))
         //     .catch(err => console.log(err));
         // const userdetailes = user.find((user) => user.username === username);
