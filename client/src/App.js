@@ -11,7 +11,11 @@ import React, { useEffect, useState } from 'react'
 import SignupPage from './signup'
 import LoginPage from './login'
 function App() {
-
+    const [username, setUsername] = useState('');
+  
+    const handleLogin = (username) => {
+      setUsername(username);
+    };
   return (
     <div>
      <>
@@ -24,7 +28,8 @@ function App() {
         <Route path="/api" exact element = {<Api/>}/>
         <Route path="/login" exact element = {<LoginPage/>}/>
         <Route path="/signup" exact element = {<SignupPage/>}/>
-        <Route path="/userdashboard" exact element = {<UserDashboard/>}/>
+        <Route path="/userdashboard" exact element = {<UserDashboard />}/>
+        
        
       </Routes>
     </BrowserRouter></>

@@ -1,46 +1,44 @@
-import { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
-import axios from 'axios';
-
-function UserDashboard() {
-    const [username, setUsername] = useState('');
-    const [name, setName] = useState([]);
-    const [info, setInfo] = useState([]);
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios'
+import { useNavigate } from "react-router-dom"
+const UserDashboard = () => {
+    const location = useLocation();
+    const { username } = location.state;
+    const [username1, setUser] = useState('');
+    const [name, setName] = useState('');
+    const [bio, setBio] = useState('');
+    let navigate = useNavigate();
     useEffect(() => {
-        const searchParams = new URLSearchParams(window.location.search);
-        setUsername(searchParams.get('username'));
-        setInfo(searchParams.get('info'))
-        setName(searchParams.get('name'))
-
-        // axios.get('http://3.213.111.194:3003/login')
-        //     .then(res => setUser(res.data))
-        //     .catch(err => console.log(err));
-        // const userdetailes = user.find((user) => user.username === username);
-        //     if (userdetailes) {
-        //        info = userdetailes.info;
-        //     } 
-    }, []);
+        axios.get('http://localhost:3003/login')
+            .then(res => {
+                const users = res.data;
+                users.forEach(user => {
+                    if (user.username === username) {
+                        setName(user.name);
+                        setBio(user.info);
+                    }
+                });
+            })
+            .catch(err => console.log(err));
+    })
+    const logout = async (e) => {
+        e.preventDefault();
+        try {
+            navigate("/");
+        } catch (err) {
+            console.error(err.response.data);
+            
+        }
+    }
     return (
-        <Container>
+        <div class="text-center mx-auto my-4">
+            <h1>Welcome, {name}</h1>
+            <h1>Your Info : {bio}</h1>
+            <button class="btn btn-secondary" onClick={logout} >Logout</button>
 
-            <div class="container">
-                <div class="row justify-content-center align-items-center mt-5">
-                    <div class="col-sm-8 col-md-6 col-lg-4 text-center">
-                        <h4 class="mb-3">User Dashboard</h4>
-                        <div class="card p-3">
-                            <div class="card-body">
-                            <h5 class="card-title">Name: {name}</h5>
-                                <p class="card-text name"></p>
-                                <h5 class="card-title">Your Info: {info}</h5>
-                                <p class="card-text info"></p>
-                               
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </Container>
+        </div>
     );
-}
+};
 
 export default UserDashboard;

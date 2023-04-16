@@ -3,8 +3,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button, Container, Row, Col, Alert } from 'react-bootstrap';
 import { useNavigate } from "react-router-dom"
+// import { Redirect } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+import Dashboard from './userdashboard';
 
-const LoginPage = () => {
+
+const LoginPage = (props) => {
   const [formErrors, setFormErrors] = useState({
     username: '',
     password: ''
@@ -13,9 +17,12 @@ const LoginPage = () => {
   const [password, setPassword] = useState('');
   const [login, setLogin] = useState([]);
   let navigate = useNavigate();
+  const {changePage} = props;
+  const [alert, setAlert] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    axios.get('http://3.213.111.194:3003/login')
+    axios.get('http://localhost:3003/login')
       .then(res => setLogin(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -28,18 +35,31 @@ const LoginPage = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const user = login.find((user) => user.username === username && user.password === password);
-
-    if (user) {
-      // navigate to user dashboard page with username parameter
-      alert('login successfull');
-      navigate(`/userdashboard?username=${user.username}&name=${user.name}&info=${user.info}`);
-      window.location.reload();
-    } else {
-      alert('Invalid username or password.');
+    try {
+      const response = await axios.post('http://localhost:3003/checklogin', { username, password });
+      console.log(response.data);
+      localStorage.setItem('token', response.data.token);
+      setAlert(response.data.message);
+      // setLoggedIn(true);
+      navigate(`/userdashboard`,{state:{loggedin : true, username: username}});
+    } catch (err) {
+      console.error(err.response.data);
+      setAlert(err.response.data.message);
     }
+    
+    // const user = login.find((user) => user.username === username && user.password === password);
+
+    // if (user) {
+    //   // navigate to user dashboard page with username parameter
+    //   alert('login successfull');
+    //   // navigate(`/userdashboard?username=${user.username}&name=${user.name}&info=${user.info}`);
+    //   // window.location.reload();
+    //   changePage("/userdashboard");
+    // } else {
+    //   alert('Invalid username or password.');
+    // }
   }
 
   const validateForm = () => {
@@ -60,14 +80,18 @@ const LoginPage = () => {
     return formIsValid;
   };
 
+  
 
   return (
+    <>
+   
     <Container>
       <Row className="justify-content-md-center">
         <Col md="4">
           <h1>LogIn</h1>
 
           <Form onSubmit={handleSubmit}>
+          {alert && <p style={{ color: 'red' }}>{alert}</p>}
             <Form.Group controlId="formQuantity">
               <Form.Label>Username</Form.Label>
               <Form.Control type="test" placeholder="Enter Username" value={username} onChange={handleUsernameChange} isInvalid={formErrors.username} required />
@@ -90,6 +114,7 @@ const LoginPage = () => {
         </Col>
       </Row>
     </Container>
+    </>
   );
 }
 

@@ -10,8 +10,6 @@ const  options = {
     useNewUrlParser:  true,
     useUnifiedTopology:  true
 };
-
-
 mongoose.connect(uri, options).then(() =>{
      console.log("Database connection established!");
     },

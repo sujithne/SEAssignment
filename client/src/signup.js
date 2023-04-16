@@ -32,7 +32,7 @@ const SignupPage = () => {
     const formIsValid = validateForm();
 
     if (formIsValid) {
-      axios.get('http://3.213.111.194:3003/login')
+      axios.get('http://localhost:3003/login')
         .then(res => setUserExists(res.data));
       const user = userexists.find((user) => user.username === username);
 
@@ -40,7 +40,7 @@ const SignupPage = () => {
         alert('Username already taken ');
         navigate(`/signup`);
       } else {
-        axios.post('http://3.213.111.194:3003/login', {
+        axios.post('http://localhost:3003/login', {
           name,
           username,
           password,

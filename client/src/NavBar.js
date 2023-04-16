@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 const Navigate = () => {
 
@@ -15,6 +16,11 @@ const Navigate = () => {
     setIsLoggedIn(!!searchParams.get('username'));
 
   }, []);
+  const location = useLocation();
+  // const { username1 } = location.state;
+  // if (!username1){
+  //   setIsLoggedIn = true;
+  // }
   const handleLogout = () => {
     setIsLoggedIn(false);
     setUsername('');
@@ -25,7 +31,7 @@ const Navigate = () => {
       <ul>
         {isLoggedIn ? (
           <>
-            <Link to={"/userdashboard?username=${username}&name=${name}&info=${info}"} className="nav-link active">User Dashboard</Link>
+            <Link to={`/userdashboard/`} className="nav-link active">User Dashboard</Link>
             <Link to={"/inventory"} className="nav-link active">Inventory</Link>
             <Link to={"/api"} className="nav-link active">Popular Books</Link>
             <Link to={"/"} className="nav-link active" onClick={handleLogout}>Log Out</Link>

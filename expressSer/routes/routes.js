@@ -20,6 +20,10 @@ module.exports = function(router) {
     .route("/login")
     .get(loginList.listAllLogin)
     .post(loginList.createNewLogin)
+   
+    router
+    .route("/checklogin")
+    .post(loginList.checkLogin)
 
     router
     .route("/login/:id")

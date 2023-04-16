@@ -16,7 +16,7 @@ const LoginSchema = new Schema({
         unique: true,
        
     },
-    password:{
+    passwordHash:{
         type:String,
         required:true
     },
