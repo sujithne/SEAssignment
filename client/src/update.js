@@ -7,7 +7,7 @@ const EditInventoryItem = (props) => {
   const [quantity, setQuantity] = useState('');
 
   useEffect(() => {
-    axios.get(`http://3.213.111.194:3003/inventorys/${props.match.params.id}`)
+    axios.get(`http://18.235.62.53:3003/inventorys/${props.match.params.id}`)
       .then(res => {
         setName(res.data.name);
         setQuantity(res.data.quantity);
@@ -21,7 +21,7 @@ const EditInventoryItem = (props) => {
       name: name,
       quantity: quantity
     };
-    axios.put(`http://3.213.111.194:3003/inventorys/${props.match.params.id}`, updatedItem)
+    axios.put(`http://18.235.62.53:3003/inventorys/${props.match.params.id}`, updatedItem)
       .then(res => {
         console.log(res.data);
         // props.history.push('/');

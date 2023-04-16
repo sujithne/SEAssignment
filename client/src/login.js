@@ -22,7 +22,7 @@ const LoginPage = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
 
   useEffect(() => {
-    axios.get('http://localhost:3003/login')
+    axios.get('http://18.235.62.53:3003/login')
       .then(res => setLogin(res.data))
       .catch(err => console.log(err));
   }, []);
@@ -38,7 +38,7 @@ const LoginPage = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:3003/checklogin', { username, password });
+      const response = await axios.post('http://18.235.62.53:3003/checklogin', { username, password });
       console.log(response.data);
       localStorage.setItem('token', response.data.token);
       setAlert(response.data.message);

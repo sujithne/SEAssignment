@@ -10,7 +10,7 @@ const UserDashboard = () => {
     const [bio, setBio] = useState('');
     let navigate = useNavigate();
     useEffect(() => {
-        axios.get('http://3.213.111.194:3003/login')
+        axios.get('http://18.235.62.53:3003/login')
             .then(res => {
                 const users = res.data;
                 users.forEach(user => {
